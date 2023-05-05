@@ -1,0 +1,29 @@
+name: Release
+
+on: 
+  workflow_dispatch:
+    inputs:
+      path:
+        description: 'Path to platformio.ini'
+        default: 'firmware/V1.2/Marlin-2.0.7.2-SKR-mini-E3-V1.2'
+        required: true
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.platformio/.cache
+          key: ${{ runner.os }}-pio
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install PlatformIO Core
+        run: pip install --upgrade platformio
+      - name: Build PlatformIO Project
+        run: pio ru
+
