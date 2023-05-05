@@ -5,7 +5,7 @@ on:
     inputs:
       path:
         description: 'Path to platformio.ini'
-        default: 'BIGTREETECH-SKR-mini-E3-v1.2-BLTOUCH-config/firmware/V1.2/Marlin-2.0.7.2-SKR-mini-E3-V1.2/platformio.ini'
+        default: 'firmware/V1.2/Marlin-2.0.7.2-SKR-mini-E3-V1.2/platformio.ini'
         required: true
 
 jobs:
@@ -14,7 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: DEBUG
-        run: ls
+        run: |
+          ls
+          ls firmware
+          ls firmware/V1.2/Marlin-2.0.7.2-SKR-mini-E3-V1.2
       - uses: actions/cache@v3
         with:
           path: |
