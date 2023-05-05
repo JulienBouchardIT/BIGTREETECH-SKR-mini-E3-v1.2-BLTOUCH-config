@@ -30,7 +30,7 @@ jobs:
       - name: Install PlatformIO Core
         run: pip install --upgrade platformio
       - name: Build PlatformIO Project
-        run: pio run --project-conf ${{ github.event.inputs.path }}
+        run: pio run -d ${{ github.event.inputs.path }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
