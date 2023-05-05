@@ -5,11 +5,11 @@ on:
     inputs:
       path:
         description: 'Path to platformio.ini'
-        default: 'firmware/V1.2/Marlin-2.0.7.2-SKR-mini-E3-V1.2'
+        default: 'firmware/V1.2/Marlin-2.0.7.2-SKR-mini-E3-V1.2/platformio.ini'
         required: true
 
 jobs:
-  label:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,5 +25,5 @@ jobs:
       - name: Install PlatformIO Core
         run: pip install --upgrade platformio
       - name: Build PlatformIO Project
-        run: pio ru
+        run: pio run -t ${{ github.event.inputs.path }}
 
